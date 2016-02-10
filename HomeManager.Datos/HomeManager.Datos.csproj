@@ -54,13 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriaConfiguration.cs" />
+    <Compile Include="DetalleFacturaConfiguration.cs" />
+    <Compile Include="FacturaConfiguration.cs" />
     <Compile Include="HomeManagerDbContext.cs" />
     <Compile Include="Migrations\201602101359500_Inicial.cs" />
     <Compile Include="Migrations\201602101359500_Inicial.Designer.cs">
       <DependentUpon>201602101359500_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ProductoConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
