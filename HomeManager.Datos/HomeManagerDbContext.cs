@@ -18,15 +18,15 @@ namespace HomeManager.Web.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<IdentityUser>().ToTable("Usuarios");
+            
+            modelBuilder.Entity<IdentityUser>().ToTable("Usuarios").Property(p => p.Id).HasColumnName("UserId");
+            modelBuilder.Entity<ApplicationUser>().ToTable("Usuarios").Property(p => p.Id).HasColumnName("UserId");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("LoginUsuario");
             modelBuilder.Entity<IdentityUserRole>().ToTable("RolesUsuario");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("PeticionesUsuario");
 
         }
-
 
     }
 }

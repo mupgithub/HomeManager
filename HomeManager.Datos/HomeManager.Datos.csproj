@@ -55,24 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomeManagerDbContext.cs" />
-    <Compile Include="Migrations\201602101047496_Inicial.cs" />
-    <Compile Include="Migrations\201602101047496_Inicial.Designer.cs">
-      <DependentUpon>201602101047496_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602101118101_CreadaCapaDeDatos.cs" />
-    <Compile Include="Migrations\201602101118101_CreadaCapaDeDatos.Designer.cs">
-      <DependentUpon>201602101118101_CreadaCapaDeDatos.cs</DependentUpon>
+    <Compile Include="Migrations\201602101359500_Inicial.cs" />
+    <Compile Include="Migrations\201602101359500_Inicial.Designer.cs">
+      <DependentUpon>201602101359500_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602101047496_Inicial.resx">
-      <DependentUpon>201602101047496_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602101118101_CreadaCapaDeDatos.resx">
-      <DependentUpon>201602101118101_CreadaCapaDeDatos.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -83,6 +71,11 @@
       <Project>{feff16ef-3dc2-40c7-aa2a-71b23c6f86de}</Project>
       <Name>HomeManager.Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602101359500_Inicial.resx">
+      <DependentUpon>201602101359500_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
