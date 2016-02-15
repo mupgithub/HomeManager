@@ -12,13 +12,8 @@ namespace HomeManager.Web.Controllers
     [Authorize]
     public class ProductosController : Controller
     {
-        private RepositorioProductos _repoProductos;
-
-        public ProductosController()
-        {
-            _repoProductos = new RepositorioProductos(new HomeManagerDbContext());
-        }
-        
+        private RepositorioProductos _repoProductos = new RepositorioProductos(new HomeManagerDbContext());
+              
         // GET: /Productos/
         public ActionResult Index()
         {

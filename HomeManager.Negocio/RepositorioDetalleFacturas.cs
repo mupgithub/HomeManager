@@ -11,6 +11,6 @@ namespace HomeManager.Negocio
 {
     class RepositorioDetalleFacturas : RepositorioBase<DetalleFactura>
     {
-        RepositorioDetalleFacturas(DbContext db) : base(db) { }
+        public RepositorioDetalleFacturas(DbContext db) : base(db) { }
     }
 }

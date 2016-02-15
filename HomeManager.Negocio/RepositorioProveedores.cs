@@ -11,6 +11,6 @@ namespace HomeManager.Negocio
 {
     public class RepositorioProveedores : RepositorioBase<Proveedor>
     {
-        RepositorioProveedores(DbContext db) : base(db) { }
+        public RepositorioProveedores(DbContext db) : base(db) { }
     }
 }

@@ -11,6 +11,6 @@ namespace HomeManager.Negocio
 {
     public class RepositorioCategorias: RepositorioBase<Categoria> 
     {
-        RepositorioCategorias(DbContext db) : base(db) { }
+        public RepositorioCategorias(DbContext db) : base(db) { }
     }
 }
