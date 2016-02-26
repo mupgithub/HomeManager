@@ -13,6 +13,6 @@ namespace HomeManager.Entidades
         public int ProveedorId { get; set; }
         //Navegación
         virtual public Proveedor Proveedor { get; set; }
-        virtual public List<DetalleFactura> DetalleFactura { get; set; }
+        virtual public ICollection<DetalleFactura> DetalleFactura { get; set; }
     }
 }

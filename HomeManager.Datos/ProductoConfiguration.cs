@@ -14,6 +14,7 @@ namespace HomeManager.Datos
     {
         public ProductoConfiguration()
         {
+            ToTable("Productos");
             Property(p => p.Codigo)
                .HasMaxLength(15)
                .IsRequired()
@@ -26,8 +27,7 @@ namespace HomeManager.Datos
                 .HasColumnAnnotation("Index",
                     new IndexAnnotation(new IndexAttribute("AK_Productos_Descripcion") { IsUnique = true }));
 
-            Property(p => p.UltimoPrecio).HasPrecision(18, 2);
-
+            Property(p => p.UltimoPrecio).HasPrecision(18, 2).IsRequired();
             HasRequired(p => p.Categoria).WithMany(c => c.Productos).WillCascadeOnDelete(false);
 
         }

@@ -16,3 +16,5 @@ namespace HomeManager.Entidades
         public Factura Factura { get; set; }
     }
 }
+
+//Id,ProductoId,Cantidad,Precio,FacturaId

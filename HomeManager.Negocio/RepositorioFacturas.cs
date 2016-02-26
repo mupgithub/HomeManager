@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HomeManager.Negocio
 {
-    class RepositorioFacturas: RepositorioBase<Factura>
+    public class RepositorioFacturas: RepositorioBase<Factura>
     {
         public RepositorioFacturas(DbContext db) : base(db) { }
     }

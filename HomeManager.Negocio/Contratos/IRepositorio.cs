@@ -17,5 +17,6 @@ namespace HomeManager.Negocio.Contratos
         void Insertar(T entidad);
         void Eliminar(T entidad);
         void EliminarPorId(int id);
+        bool GuardarCambios();
     }
 }

@@ -39,7 +39,7 @@ namespace HomeManager.Web.Models
             modelBuilder.Entity<IdentityUserLogin>().ToTable("LoginUsuario");
             modelBuilder.Entity<IdentityUserRole>().ToTable("RolesUsuario");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("PeticionesUsuario");
-
+            
         }
 
     }

@@ -1,0 +1,81 @@
+﻿@model HomeManager.Entidades.Factura
+
+<h2>Editar Factura</h2>
+
+<div id="detallesModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="detallesModalContent"></div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>WorkOrder</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ProveedorId)
+      
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group form-group-sm">
+                    @Html.LabelFor(model => model.ProveedorId, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Proveedor.Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                                
+                <div class="form-group form-group-sm">
+                    @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Fecha, "DateWithPicker")
+                        @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               
+                <div class="form-group form-group-sm">
+                    @Html.LabelFor(model => model.Importe, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Importe, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Importe, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{Html.RenderAction("Index", "Detalles", new { facturaId = Model.Id });}
+
+        @*<div class="col-md-5">
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Total, "CustomNumberFormat", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+        </div>*@
+
+        <div class="col-md-7">
+            <div class="form-group form-group-sm">
+                <button type="submit" name="Command" value="Guardar" class="btn btn-default">Guardar</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Facturas")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/HomeManager-Modals.js"></script>
+}
+
+
+
+

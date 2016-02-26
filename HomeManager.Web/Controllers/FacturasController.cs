@@ -1,4 +1,7 @@
-﻿using System;
+﻿using HomeManager.Entidades;
+using HomeManager.Negocio;
+using HomeManager.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +11,14 @@ namespace HomeManager.Web.Controllers
 {
     public class FacturasController : Controller
     {
+        private RepositorioProveedores _repoProveedores = new RepositorioProveedores(new HomeManagerDbContext());
+        private RepositorioFacturas _repoFacturas = new RepositorioFacturas(new HomeManagerDbContext());
+
         //
         // GET: /Facturas/
         public ActionResult Index()
         {
-            return View();
+            return View(_repoFacturas.ObtenerTodos().ToList());
         }
 
         //
@@ -26,31 +32,37 @@ namespace HomeManager.Web.Controllers
         // GET: /Facturas/Create
         public ActionResult Create()
         {
+            ViewBag.ProveedorId = new SelectList(_repoProveedores.ObtenerTodos().ToList(), "Id", "Nombre");
             return View();
         }
 
-        //
-        // POST: /Facturas/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Fecha, ProveedorId")] Factura factura)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                _repoFacturas.Insertar(factura);
+                _repoFacturas.GuardarCambios();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { controller = "Facturas", action = "Edit", Id = factura.Id });
             }
-            catch
-            {
-                return View();
-            }
+
+           ViewBag.ProveedorId = new SelectList(_repoProveedores.ObtenerTodos().ToList(), "Id", "Nombre",factura.Id);
+            return View(factura);
         }
 
         //
         // GET: /Facturas/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Factura factura = _repoFacturas.ObtenerPorId(id);
+            if (factura == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(factura);
         }
 
         //
@@ -69,6 +81,14 @@ namespace HomeManager.Web.Controllers
                 return View();
             }
         }
+
+        // GET: /Facturas/
+        public ActionResult Detalles()
+        {
+            return View();
+        }
+
+
 
         //
         // GET: /Facturas/Delete/5

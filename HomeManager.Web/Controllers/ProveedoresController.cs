@@ -25,10 +25,6 @@ namespace HomeManager.Web.Controllers
         // GET: /Proveedores/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Proveedor proveedor = _repoProveedores.ObtenerPorId(id);
             if (proveedor == null)
             {
@@ -37,10 +33,10 @@ namespace HomeManager.Web.Controllers
             return View(proveedor);
         }
 
-        // GET: /Proveedores/Create
-        public ActionResult Create()
+        // GET: /Proveedores/Nuevo
+        public ActionResult Nuevo()
         {
-            return View();
+            return PartialView("_Nuevo");
         }
 
         // POST: /Proveedores/Create
@@ -48,30 +44,31 @@ namespace HomeManager.Web.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Nombre,Direccion,Telefono,Ciudad,CodigoPostal")] Proveedor proveedor)
+        public ActionResult Nuevo([Bind(Include = "Id,Nombre,Direccion,Telefono,Ciudad,CodigoPostal")] Proveedor proveedor)
         {
             if (ModelState.IsValid)
             {
                 _repoProveedores.Insertar(proveedor);
-                return RedirectToAction("Index");
+                if (_repoProveedores.GuardarCambios())
+                {
+                    return RedirectToAction("Index");
+                }
+                //_repoProveedores.GuardarCambios();
+                
             }
-
-            return View(proveedor);
+            //return RedirectToAction("Edit", proveedor);
+            return PartialView("_Nuevo",proveedor);
         }
 
         // GET: /Proveedores/Edit/5
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Proveedor proveedor = _repoProveedores.ObtenerPorId(id);
             if (proveedor == null)
             {
                 return HttpNotFound();
             }
-            return View(proveedor);
+            return PartialView("_Edit", proveedor);
         }
 
         // POST: /Proveedores/Edit/5
@@ -84,6 +81,8 @@ namespace HomeManager.Web.Controllers
             if (ModelState.IsValid)
             {
                 _repoProveedores.Editar(proveedor);
+                _repoProveedores.GuardarCambios();
+
                 return RedirectToAction("Index");
             }
             return View(proveedor);
@@ -92,10 +91,6 @@ namespace HomeManager.Web.Controllers
         // GET: /Proveedores/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Proveedor proveedor = _repoProveedores.ObtenerPorId(id);
             if (proveedor == null)
             {
@@ -111,6 +106,7 @@ namespace HomeManager.Web.Controllers
         {
             Proveedor proveedor = _repoProveedores.ObtenerPorId(id);
             _repoProveedores.Eliminar(proveedor);
+            _repoProveedores.GuardarCambios();
             return RedirectToAction("Index");
         }
         

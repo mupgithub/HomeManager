@@ -14,13 +14,13 @@ namespace HomeManager.Datos
     {
         public ProveedorConfiguration()
         {
+            ToTable("Proveedores");
             Property(p => p.Nombre)
                 .HasMaxLength(50)
                 .IsRequired()
                 .HasColumnAnnotation("Index",
                     new IndexAnnotation(new IndexAttribute("AK_Proveedor_Nombre") {IsUnique = true}));
 
-            Property(p => p.Telefono).HasMaxLength(12).IsRequired();
             Property(p => p.Direccion).HasMaxLength(100).IsRequired();
             Property(p => p.Ciudad).HasMaxLength(30).IsRequired();
             Property(p => p.CodigoPostal).HasMaxLength(10).IsRequired();

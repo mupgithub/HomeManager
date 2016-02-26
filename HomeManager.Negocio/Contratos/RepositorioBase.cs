@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -11,8 +12,8 @@ namespace HomeManager.Negocio.Contratos
 {
     public abstract class RepositorioBase<T> : IRepositorio<T> where T:class
     {
-        public DbContext _context;
-        public DbSet<T> _dbset;
+        private DbContext _context;
+        private DbSet<T> _dbset;
         public RepositorioBase(DbContext context)
         {
             _context = context;
@@ -54,6 +55,22 @@ namespace HomeManager.Negocio.Contratos
         {
             T entidad = _dbset.Find(id);
             _context.Entry(entidad).State = EntityState.Deleted;
+        }
+
+
+        public bool GuardarCambios()
+        {
+            try
+            {
+
+                return _context.SaveChanges()>0;
+            }
+            catch (Exception e)
+            {
+                //Tratar Error
+                Debug.WriteLine(String.Format("Error No. {0} : {1}", e.HResult.ToString(), e.Message));
+                return false;
+            }
         }
     }
 }

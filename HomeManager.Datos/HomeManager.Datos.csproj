@@ -58,13 +58,9 @@
     <Compile Include="DetalleFacturaConfiguration.cs" />
     <Compile Include="FacturaConfiguration.cs" />
     <Compile Include="HomeManagerDbContext.cs" />
-    <Compile Include="Migrations\201602101359500_Inicial.cs" />
-    <Compile Include="Migrations\201602101359500_Inicial.Designer.cs">
-      <DependentUpon>201602101359500_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602101523055_EntidadesCreadas.cs" />
-    <Compile Include="Migrations\201602101523055_EntidadesCreadas.Designer.cs">
-      <DependentUpon>201602101523055_EntidadesCreadas.cs</DependentUpon>
+    <Compile Include="Migrations\201602221045008_Inicial.cs" />
+    <Compile Include="Migrations\201602221045008_Inicial.Designer.cs">
+      <DependentUpon>201602221045008_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductoConfiguration.cs" />
@@ -82,11 +78,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602101359500_Inicial.resx">
-      <DependentUpon>201602101359500_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602101523055_EntidadesCreadas.resx">
-      <DependentUpon>201602101523055_EntidadesCreadas.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602221045008_Inicial.resx">
+      <DependentUpon>201602221045008_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
